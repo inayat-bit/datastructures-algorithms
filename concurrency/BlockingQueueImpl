@@ -1,0 +1,28 @@
+private LinkedList<Object> queue = new LinkedList<>();
+	  private int  limit = 10;
+	  public void enqueue(Object item)
+	  throws InterruptedException  {
+		synchronized (queue) {
+	    while(queue.size() == limit) {
+	    	queue.wait();
+	    }
+	    if(queue.size() == 0) {
+	      queue.notifyAll();
+	    }
+	    queue.add(item);
+	  }
+	  }
+
+	  public Object dequeue()
+	  throws InterruptedException{
+		synchronized (queue) {
+	    while(queue.size() == 0){
+	      queue.wait();
+	    }
+	    if(queue.size() == limit){
+	      queue.notifyAll();
+	    }
+
+	    return queue.removeFirst();
+	  }
+	  }
