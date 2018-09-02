@@ -1,0 +1,19 @@
+package examples.searching;
+
+public class FindMissingNumber {
+
+	public static void main(String[] args) {
+		int a [] = {1,1,2,3,3,4,4,5,5};
+		int n = a.length;
+        System.out.println(findMissingNumber(a,n));
+	}
+	
+	static int findMissingNumber(int[] a, int n) {
+		int res = 0;
+		for (int i = 0; i < n; i++) {
+			res ^= a[i];
+		}
+		return res;
+	}
+
+}
