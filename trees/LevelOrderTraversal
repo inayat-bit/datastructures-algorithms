@@ -1,0 +1,37 @@
+package examples.tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import codingexercise.BinarySearchTree;
+
+public class LevelOrderTraversal {
+	public static void levelOrderTraversal(BinarySearchTree root) {
+		Queue<BinarySearchTree> queue = new LinkedList<>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			root = queue.poll();
+			System.out.print(root.getData() + " ");
+			if(root.getLeft() != null)
+				queue.add(root.getLeft());
+			if(root.getRight() != null)
+				queue.add(root.getRight());
+		}
+		queue.clear();
+	}
+	public static BinarySearchTree getBinaryTree() {
+		BinarySearchTree bst = null;
+		bst  = BinarySearchTree.insert(bst, 4);
+		bst  = BinarySearchTree.insert(bst, 2);
+		bst  = BinarySearchTree.insert(bst, 1);
+		bst  = BinarySearchTree.insert(bst, 3);
+		bst  = BinarySearchTree.insert(bst, 6);
+		bst  = BinarySearchTree.insert(bst, 5);
+		bst  = BinarySearchTree.insert(bst, 7);
+		return bst;
+	}
+
+	public static void main(String args[]) {		
+		levelOrderTraversal(getBinaryTree());
+	}
+}
